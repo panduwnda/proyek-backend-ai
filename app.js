@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const cors = require("cors"); // Memanggil alat cors
+app.use(cors()); // Mengaktifkan cors untuk semua pengunjung
 const mysql = require("mysql2");
 
 // Pengaturan alamat dan kunci kulkas (database)
