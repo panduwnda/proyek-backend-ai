@@ -6,10 +6,12 @@ const mysql = require("mysql2");
 
 // Pengaturan alamat dan kunci kulkas (database)
 const databaseMySQL = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "", // Bawaan XAMPP memang kosong
-  database: "db_perusahaan",
+  host: "mysql-260172d4-putrapandu530-9e8c.a.aivencloud.com",
+  port: "15590",
+  user: "avnadmin",
+  password: "AVNS_ir1bA1cXidrHaJe6nAD", // Bawaan XAMPP memang kosong
+  database: "defaultdb",
+  ssl: { rejectUnauthorized: false },
 });
 
 // Mengetes apakah koneksi berhasil
