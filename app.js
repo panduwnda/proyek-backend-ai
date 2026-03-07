@@ -43,7 +43,7 @@ app.post("/lamar", function (request, response) {
   }
 
   // 1. Rancangan perintah SQL
-  let perintahSQL = "INSERT INTO tabel_lamaran (kolom_nama, kolom_usia) VALUES (?, ?)";
+  let perintahSQL = "INSERT INTO lamaran (nama, usia) VALUES (?, ?)";
 
   // 2. Data yang akan mengisi tanda ?
   let nilaiYangDimasukkan = [dataPelamar.nama, dataPelamar.usia];
