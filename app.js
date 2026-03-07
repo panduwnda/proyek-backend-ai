@@ -64,7 +64,7 @@ app.post("/lamar", function (request, response) {
 app.get("/lihat-data", (req, res) => {
   const sql = "SELECT * FROM lamaran";
 
-  db.query(sql, (err, hasil) => {
+  databaseMySQL.query(sql, (err, hasil) => {
     if (err) {
       console.error(err);
       return res.status(500).send("Gagal mengambil data dari kulkas awan.");
