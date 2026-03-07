@@ -60,6 +60,20 @@ app.post("/lamar", function (request, response) {
   });
 });
 
+// Loket untuk HRD melihat data (Fungsi READ)
+app.get("/lihat-data", (req, res) => {
+  const sql = "SELECT * FROM lamaran";
+
+  db.query(sql, (err, hasil) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Gagal mengambil data dari kulkas awan.");
+    }
+    // Mengirimkan hasil bacaan dari database ke browser
+    res.json(hasil);
+  });
+});
+
 // Menyalakan server di port 3000
 app.listen(3000, function () {
   console.log("Server sudah menyala di port 3000");
