@@ -74,6 +74,24 @@ app.get("/lihat-data", (req, res) => {
   });
 });
 
+// Loket untuk HRD menghapus data (Fungsi DELETE)
+app.delete("/hapus-data/:id", (req, res) => {
+  // Menangkap nomor ID dari alamat URL
+  const targetId = req.params.id;
+
+  // Perintah SQL dengan target spesifik
+  const sql = "DELETE FROM lamaran WHERE id = ?";
+
+  // Mengeksekusi perintah hapus
+  databaseMySQL.query(sql, [targetId], (err, hasil) => {
+    if (err) {
+      console.error("Gagal menghapus:", err);
+      return res.status(500).send("Gagal menghapus data dari kulkas awan.");
+    }
+    res.send("Data lamaran berhasil dihapus!");
+  });
+});
+
 // Menyalakan server di port 3000
 app.listen(3000, function () {
   console.log("Server sudah menyala di port 3000");
