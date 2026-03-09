@@ -92,6 +92,24 @@ app.delete("/hapus-data/:id", (req, res) => {
   });
 });
 
+// Loket untuk HRD memperbarui data (Fungsi UPDATE)
+app.put("/update-data/:id", (req, res) => {
+  const targetId = req.params.id;
+  const usiaBaru = req.body.usia; // Menangkap data usia baru dari paket yang dikirim
+
+  // Perintah SQL untuk mengubah usia berdasarkan ID
+  const sql = "UPDATE lamaran SET usia = ? WHERE id = ?";
+
+  // Mengeksekusi perintah perbarui (perhatikan urutan array: usiaBaru dulu, lalu targetId)
+  databaseMySQL.query(sql, [usiaBaru, targetId], (err, hasil) => {
+    if (err) {
+      console.error("Gagal memperbarui:", err);
+      return res.status(500).send("Gagal memperbarui data di kulkas awan.");
+    }
+    res.send("Data usia berhasil diperbarui!");
+  });
+});
+
 // Menyalakan server di port 3000
 app.listen(3000, function () {
   console.log("Server sudah menyala di port 3000");
