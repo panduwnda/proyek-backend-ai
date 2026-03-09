@@ -4,22 +4,42 @@ const cors = require("cors"); // Memanggil alat cors
 app.use(cors()); // Mengaktifkan cors untuk semua pengunjung
 const mysql = require("mysql2");
 
-// Pengaturan alamat dan kunci kulkas (database)
-const databaseMySQL = mysql.createConnection({
+// // Pengaturan alamat dan kunci kulkas (database)
+// const databaseMySQL = mysql.createConnection({
+//   host: "mysql-260172d4-putrapandu530-9e8c.a.aivencloud.com",
+//   port: "15590",
+//   user: "avnadmin",
+//   password: "AVNS_ir1bA1cXidrHaJe6nAD", // Bawaan XAMPP memang kosong
+//   database: "defaultdb",
+//   ssl: { rejectUnauthorized: false },
+// });
+
+// // Mengetes apakah koneksi berhasil
+// databaseMySQL.connect(function (error) {
+//   if (error) {
+//     console.log("Gagal terhubung ke database:", error);
+//   } else {
+//     console.log("Berhasil terhubung ke database MySQL! 🔌");
+//   }
+// });
+
+// Pengaturan alamat dan kunci kulkas (database) dengan sistem Pool
+const databaseMySQL = mysql.createPool({
   host: "mysql-260172d4-putrapandu530-9e8c.a.aivencloud.com",
   port: "15590",
   user: "avnadmin",
-  password: "AVNS_ir1bA1cXidrHaJe6nAD", // Bawaan XAMPP memang kosong
+  password: "AVNS_ir1bA1cXidrHaJe6nAD",
   database: "defaultdb",
   ssl: { rejectUnauthorized: false },
 });
 
-// Mengetes apakah koneksi berhasil
-databaseMySQL.connect(function (error) {
+// Mengetes apakah kolam koneksi berhasil
+databaseMySQL.getConnection(function (error, connection) {
   if (error) {
-    console.log("Gagal terhubung ke database:", error);
+    console.log("Gagal terhubung ke kolam database:", error);
   } else {
-    console.log("Berhasil terhubung ke database MySQL! 🔌");
+    console.log("Berhasil terhubung ke database MySQL dengan sistem Pool! 🔌");
+    connection.release(); // Menutup telepon tes agar salurannya bisa dipakai oleh rute lain
   }
 });
 
